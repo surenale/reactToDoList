@@ -25,6 +25,17 @@ const App = () => {
         setInputList("");
 
     }
+    const deleteItems = (id) => {
+        console.log("deleted");
+
+        // deleting the items in list using filter 
+        setItems((oldItems) => {
+            return oldItems.filter((arrElem, index) => {
+                return index !== id;
+
+            });
+        })
+    }
 
 
     return (
@@ -39,11 +50,15 @@ const App = () => {
                     <ol>
                         {/* <li>{inputList}</li> */}
                         {
-                            // map method is used for accesing the items of array 
-                            items.map((itemVal) => {
+                            // map method is used for accesing the items of array
+                            //it has four fields but we use value and corresponding index in this case 
+                            items.map((itemVal, index) => {
                                 return <ToDoList
+                                    key={index}
+                                    id={index}
                                     text={itemVal}
-                                />
+                                    onSelect={deleteItems}
+                                />;
                             })
                         }
                     </ol>
